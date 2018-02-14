@@ -1,4 +1,5 @@
 import os
+import re
 
 clear = lambda: os.system('cls')
 
@@ -9,15 +10,15 @@ def filterStrings():
     clear()
     ctr = 0
     while (ctr < len(listOfStrings)):
-        showStrings(listOfStrings[ctr].split('"'))
+        showStrings(re.findall('\".*?\"', listOfStrings[ctr]))
+        showStrings(re.findall("\'.*?\'", listOfStrings[ctr]))
         ctr += 1
 
 
 def showStrings(listOfFilteredStrings):
     ctr = 0
     while (ctr < len(listOfFilteredStrings)):
-        if ctr == 1 or ctr % 2 == 1:
-            print(listOfFilteredStrings[ctr])
+        print(listOfFilteredStrings[ctr].replace('"', "").replace("'", ""))
         ctr += 1
 
 
